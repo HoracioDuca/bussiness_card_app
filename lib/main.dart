@@ -11,10 +11,12 @@ class BusinessCardApp extends StatelessWidget {
     this.titleFontSize = Dimension.titleFontSize,
     this.subtitleFontSize = Dimension.subtitleFontSize,
     this.letterSpacing = Dimension.letterSpacing,
-    this.dividerHeight = Dimension.dividerHeight,
     this.cardSubtitleFontSize = Dimension.cardSubtitleFontSize,
     this.sizedBoxHeight = Dimension.sizedBoxHeight,
     this.sizedBoxWidth = Dimension.sizedBoxWidth,
+    this.dividerThickness = Dimension.dividerThickness,
+    this.dividerIndent = Dimension.dividerIndent,
+    this.dividerEndIndent = Dimension.dividerEndIndent,
   });
 
   final double blurRadius;
@@ -23,10 +25,12 @@ class BusinessCardApp extends StatelessWidget {
   final double titleFontSize;
   final double subtitleFontSize;
   final double letterSpacing;
-  final double dividerHeight;
   final double cardSubtitleFontSize;
   final double sizedBoxHeight;
   final double sizedBoxWidth;
+  final double dividerThickness;
+  final double dividerIndent;
+  final double dividerEndIndent;
 
   @override
   Widget build(BuildContext context) {
@@ -130,13 +134,12 @@ class BusinessCardApp extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: sizedBoxWidth,
+                  Divider(
                     height: sizedBoxHeight,
-                    child: Divider(
-                      height: dividerHeight,
-                      color: Colors.black54,
-                    ),
+                    thickness: dividerThickness,
+                    indent: dividerIndent,
+                    endIndent: dividerEndIndent,
+                    color: Colors.black54,
                   ),
                   Card(
                     color: Colors.lightGreen,
