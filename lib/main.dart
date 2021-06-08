@@ -1,5 +1,5 @@
+import 'styles/dimensions.dart';
 import 'package:flutter/material.dart';
-import 'package:business_card/styles/dimensions.dart';
 
 void main() => runApp(BusinessCardApp());
 
@@ -13,6 +13,8 @@ class BusinessCardApp extends StatelessWidget {
     this.letterSpacing = Dimension.letterSpacing,
     this.dividerHeight = Dimension.dividerHeight,
     this.cardSubtitleFontSize = Dimension.cardSubtitleFontSize,
+    this.sizedBoxHeight = Dimension.sizedBoxHeight,
+    this.sizedBoxWidth = Dimension.sizedBoxWidth,
   });
 
   final double blurRadius;
@@ -23,6 +25,8 @@ class BusinessCardApp extends StatelessWidget {
   final double letterSpacing;
   final double dividerHeight;
   final double cardSubtitleFontSize;
+  final double sizedBoxHeight;
+  final double sizedBoxWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -30,40 +34,45 @@ class BusinessCardApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Business Card App',
       home: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              Colors.green,
-              Colors.yellow,
-            ]),
-          ),
-          child: SafeArea(
+        backgroundColor: Colors.green,
+        body: SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.green,
+                  Colors.yellow,
+                ],
+              ),
+            ),
             child: Padding(
-              padding: const EdgeInsets.only(
-                left: 50.0,
-                right: 50.0,
+              padding: const EdgeInsets.symmetric(
+                horizontal: Dimension.horizontalPadding,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: blurRadius,
-                            color: Colors.black,
-                            spreadRadius: spreadRadius,
-                          ),
-                        ]),
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: blurRadius,
+                          color: Colors.black,
+                          spreadRadius: spreadRadius,
+                        ),
+                      ],
+                    ),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/me.jpg"),
+                      backgroundImage: AssetImage(
+                        "assets/images/me.jpg",
+                      ),
                       radius: circleAvatarRadius,
                     ),
                   ),
                   SizedBox(
-                    height: 40.0,
+                    height: sizedBoxHeight,
                   ),
                   Text(
                     'Horacio Duca',
@@ -81,7 +90,7 @@ class BusinessCardApp extends StatelessWidget {
                           ),
                         ),
                         Shadow(
-                          blurRadius: 10.0,
+                          blurRadius: blurRadius,
                           color: Colors.lightGreen,
                           offset: Offset(
                             5.0,
@@ -92,7 +101,7 @@ class BusinessCardApp extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: sizedBoxHeight,
                   ),
                   Text(
                     'Flutter Developer Trainee',
@@ -122,8 +131,8 @@ class BusinessCardApp extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 220.0,
-                    height: 10.0,
+                    width: sizedBoxWidth,
+                    height: sizedBoxHeight,
                     child: Divider(
                       height: dividerHeight,
                       color: Colors.black54,
@@ -132,7 +141,9 @@ class BusinessCardApp extends StatelessWidget {
                   Card(
                     color: Colors.lightGreen,
                     child: ListTile(
-                      leading: Icon(Icons.phone),
+                      leading: Icon(
+                        Icons.phone,
+                      ),
                       title: Text(
                         '+54 9 2284-534691',
                         style: TextStyle(
@@ -145,16 +156,18 @@ class BusinessCardApp extends StatelessWidget {
                           fontSize: cardSubtitleFontSize,
                         ),
                       ),
-                      onTap: () => _onPressMakePhoneCall(),
+                      onTap: () {},
                     ),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: sizedBoxHeight,
                   ),
                   Card(
                     color: Colors.lightGreen,
                     child: ListTile(
-                      leading: Icon(Icons.email_outlined),
+                      leading: Icon(
+                        Icons.email_outlined,
+                      ),
                       title: Text(
                         'Horacio.duca@globant.com',
                         style: TextStyle(
@@ -167,7 +180,7 @@ class BusinessCardApp extends StatelessWidget {
                           fontSize: cardSubtitleFontSize,
                         ),
                       ),
-                      onTap: () => _onPressSendEmail(),
+                      onTap: () {},
                     ),
                   ),
                 ],
@@ -178,8 +191,4 @@ class BusinessCardApp extends StatelessWidget {
       ),
     );
   }
-
-  _onPressSendEmail() {}
-
-  _onPressMakePhoneCall() {}
 }
